@@ -14,9 +14,7 @@ class Amplitude {
         return new Amplitude(BigDecimal.valueOf(value));
     }
 
-
     BigDecimal get() {
         return value;
     }
-
 }
