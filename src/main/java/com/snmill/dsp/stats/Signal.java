@@ -11,10 +11,43 @@ class Signal {
     void append(Amplitude... amplitudes) {
         for(Amplitude amplitude : amplitudes) {
             samples.add(amplitude);
+            updateMinMax(amplitude);
         }
     }
 
     void forEach(Consumer<Amplitude> consumer) {
         samples.forEach(consumer);
+    }
+
+
+    private void updateMinMax(Amplitude candidate) {
+        if(min==null) {
+            min = candidate;
+        }
+        if(max == null) {
+            max = candidate;
+        }
+
+        int minCompare = candidate.get().compareTo(min.get());
+        int maxCompare = candidate.get().compareTo(max.get());
+
+        if(minCompare<0) {
+            min = candidate;
+        }
+        if(maxCompare>0) {
+            max = candidate;
+        }
+    }
+
+
+    Amplitude min = null;
+    Amplitude max = null;
+
+    Amplitude min() {
+        return min;
+    }
+
+    Amplitude max() {
+        return max;
     }
 }
