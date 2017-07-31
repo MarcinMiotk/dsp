@@ -13,7 +13,7 @@ class Histogram {
     final List<Bin> histogramBins = new ArrayList<>();
 
     void forEach(Consumer<Bin> consumer) {
-     //   histogramBins.forEach(consumer);
+        histogramBins.forEach(consumer);
     }
 
     Histogram(Signal signal, int bins) {

@@ -2,7 +2,7 @@ package com.snmill.dsp.stats;
 
 import java.math.BigDecimal;
 
-class Amplitude {
+public class Amplitude {
 
     final BigDecimal value;
 
@@ -10,11 +10,11 @@ class Amplitude {
         this.value = value;
     }
 
-    static Amplitude of(int value) {
+    public static Amplitude of(int value) {
         return new Amplitude(BigDecimal.valueOf(value));
     }
 
-    BigDecimal get() {
+    public BigDecimal get() {
         return value;
     }
 }

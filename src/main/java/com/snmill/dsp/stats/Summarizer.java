@@ -2,19 +2,19 @@ package com.snmill.dsp.stats;
 
 import java.math.BigDecimal;
 
-class Summarizer {
+public class Summarizer {
 
     BigDecimal sum = BigDecimal.ZERO;
 
-    void it(Amplitude amplitude) {
+    public void it(Amplitude amplitude) {
         sum = sum.add(amplitude.get());
     }
 
-    void it(Deviation deviation) {
+    public void it(Deviation deviation) {
         sum = sum.add(deviation.get());
     }
 
-    BigDecimal get() {
+    public BigDecimal get() {
         return sum;
     }
 }

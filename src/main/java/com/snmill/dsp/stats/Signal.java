@@ -2,23 +2,30 @@ package com.snmill.dsp.stats;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-class Signal {
+
+public class Signal {
 
     private final List<Amplitude> samples = new ArrayList();
 
-    void append(Amplitude... amplitudes) {
+    public void append(Amplitude... amplitudes) {
         for(Amplitude amplitude : amplitudes) {
             samples.add(amplitude);
             updateMinMax(amplitude);
         }
     }
 
-    void forEach(Consumer<Amplitude> consumer) {
+    public void forEach(Consumer<Amplitude> consumer) {
         samples.forEach(consumer);
     }
 
+    public void forEach(BiConsumer<Amplitude, Integer> consumer) {
+        for(int i=0; i<samples.size(); i++) {
+            consumer.accept(samples.get(i), i);
+        }
+    }
 
     private void updateMinMax(Amplitude candidate) {
         if(min==null) {
@@ -49,5 +56,9 @@ class Signal {
 
     Amplitude max() {
         return max;
+    }
+
+    public int countAllSamples() {
+        return samples.size();
     }
 }
